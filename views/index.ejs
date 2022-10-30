@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Site | <%= title %></title>
+    <%- include('./partials/head.ejs')  %>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/blogs/create">Create Blog</a></li>
-        </ul>
-    </nav>
+    <%- include("./partials/nav.ejs") %>
 
     <h1>Blogs</h1>
-    <p>This is an EJS file</p>
-    <p>Just HTML Syntax!</p>
+
+    <% if (blogs.length > 0) { %>
+        <% blogs.forEach(blog => { %>
+            <h3 class="title"><%= blog.title %></h3>
+            <p class="snippet"><%= blog.snippet %></p>
+        <% }) %>
+    <% } else { %>
+        <p>There are no blogs :(</p>
+    <% } %>
+
+    <%- include('./partials/footer.ejs') %>
 </body>
 </html>
